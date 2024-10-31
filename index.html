@@ -17,6 +17,7 @@
             min-height: 100vh; /* 设置最小高度为视口高度，使内容总是垂直居中 */
             margin: 0; /* 去除默认的页面边距 */
             background-color: transparent; /* 背景颜色透明 */
+            flex-direction: column; /* 设置为纵向排列 */
         }
 
         /* 设置轮播容器的样式 */
@@ -70,14 +71,11 @@
 
         /* 自定义定位条的样式 */
         .progress-bar {
-            position: absolute; /* 使用绝对定位，使进度条位于轮播下方 */
             width: 60%; /* 进度条宽度设为轮播容器宽度的60% */
             height: 4px; /* 进度条高度 */
             background-color: #ccc; /* 默认背景色 */
             overflow: hidden; /* 防止溢出 */
-            bottom: 10px; /* 距离轮播容器底部10px */
-            left: 50%; /* 水平居中 */
-            transform: translateX(-50%); /* 确保进度条居中 */
+            margin-top: 10px; /* 距离轮播容器底部10px */
             opacity: 0; /* 初始时隐藏 */
             transition: opacity 0.3s; /* 添加过渡效果 */
         }
@@ -91,8 +89,8 @@
         }
 
         /* 鼠标悬停时箭头和定位栏显示 */
-        .carousel:hover .flickity-button,
-        .carousel:hover .progress-bar {
+        .carousel:hover + .progress-bar,
+        .carousel:hover .flickity-button {
             opacity: 0.7; /* 显示箭头和定位栏 */
         }
     </style>
@@ -120,10 +118,11 @@
         <div class="carousel-cell">
             <img src="https://i.imgur.com/tgYbcCe.jpg" alt="Image 5">
         </div>
-        <!-- 定位栏 -->
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
+    </div>
+
+    <!-- 定位栏 -->
+    <div class="progress-bar">
+        <div class="progress"></div>
     </div>
 
     <!-- 引入Flickity JavaScript -->
