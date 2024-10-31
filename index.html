@@ -68,14 +68,16 @@
             transition: opacity 0.3s; /* 添加过渡效果 */
         }
 
-        /* 自定义条形定位栏的样式 */
+        /* 自定义定位条的样式 */
         .progress-bar {
-            position: relative;
-            width: 100%;
-            height: 4px;
+            position: absolute; /* 使用绝对定位，使进度条位于轮播下方 */
+            width: 60%; /* 进度条宽度设为轮播容器宽度的60% */
+            height: 4px; /* 进度条高度 */
             background-color: #ccc; /* 默认背景色 */
-            overflow: hidden;
-            margin-top: 10px;
+            overflow: hidden; /* 防止溢出 */
+            bottom: 10px; /* 距离轮播容器底部10px */
+            left: 50%; /* 水平居中 */
+            transform: translateX(-50%); /* 确保进度条居中 */
             opacity: 0; /* 初始时隐藏 */
             transition: opacity 0.3s; /* 添加过渡效果 */
         }
@@ -118,11 +120,10 @@
         <div class="carousel-cell">
             <img src="https://i.imgur.com/tgYbcCe.jpg" alt="Image 5">
         </div>
-    </div>
-
-    <!-- 进度条 -->
-    <div class="progress-bar">
-        <div class="progress"></div>
+        <!-- 定位栏 -->
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
     </div>
 
     <!-- 引入Flickity JavaScript -->
@@ -154,14 +155,14 @@
         function showControls() {
             // 清除隐藏定时器并显示控件
             clearTimeout(hideTimeout);
-            carousel.querySelector('.flickity-button').style.opacity = '0.7';
+            carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0.7');
             document.querySelector('.progress-bar').style.opacity = '0.7';
         }
 
         function hideControls() {
             // 在一段时间后隐藏控件
             hideTimeout = setTimeout(() => {
-                carousel.querySelector('.flickity-button').style.opacity = '0';
+                carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0');
                 document.querySelector('.progress-bar').style.opacity = '0';
             }, 2000); // 两秒后隐藏
         }
