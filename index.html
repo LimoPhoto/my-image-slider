@@ -15,15 +15,15 @@
             justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */
             min-height: 100vh; /* 让内容始终垂直居中 */
-            margin: 10px; /* 页边距 */
-            background-color: #f0f0f0; /* 设置页面背景颜色 */
+            margin: 25px; /* 页边距 */
+            background-color: transparent; /* 设置页面背景颜色 */
             flex-direction: column; /* 纵向排列内容 */
         }
 
         /* 轮播容器样式 */
         .carousel {
             width: 100%; /* 宽度占满父元素 */
-            max-width: 800px; /* 限制最大宽度，避免在大屏幕上过宽 */
+            max-width: 1000px; /* 限制最大宽度，避免在大屏幕上过宽 */
             background-color: transparent; /* 背景透明 */
             margin: 0 auto; /* 水平居中 */
             padding-top: 5px; /* 较小的顶部内边距 */
@@ -34,7 +34,7 @@
         .carousel-cell {
             width: 100%; /* 单元格宽度 */
             height: auto; /* 高度自适应 */
-            padding-bottom: 50%; /* 在PC上使用2:1的宽高比 */
+            padding-bottom: 56.25%; /* 创建16:9的宽高比（可根据需要调整） */
             background-color: transparent; /* 背景透明 */
             position: relative; /* 为图片的绝对定位提供参考 */
             margin-right: 10px; /* 各图片间增加间距 */
@@ -54,7 +54,7 @@
         /* 响应式设计：在小屏幕上调整轮播高度 */
         @media (max-width: 600px) {
             .carousel-cell {
-                padding-bottom: 40%; /* 小屏幕上使用更小的宽高比 */
+                padding-bottom: 100%; /* 在小屏幕上使用1:1的宽高比 */
             }
         }
 
@@ -72,7 +72,7 @@
 
         /* 进度条容器样式 */
         .progress-bar {
-            width: 40%; /* 进度条宽度为轮播容器的40% */
+            width: 35%; /* 进度条宽度为轮播容器的40% */
             height: 2px; /* 进度条高度 */
             background-color: #ccc; /* 进度条背景色 */
             overflow: hidden; /* 防止内容溢出 */
