@@ -9,133 +9,108 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     
     <style>
-        /* 设置页面背景为透明 */
+        /* 设置页面主体的样式 */
         body {
             display: flex; /* 使用弹性盒模型使内容居中 */
             justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */
-            min-height: 100vh; /* 设置最小高度为视口高度，使内容总是垂直居中 */
-            margin: 10px; /* 去除默认的页面边距 */
-            background-color: transparent; /* 背景颜色透明 */
-            flex-direction: column; /* 设置为纵向排列 */
+            min-height: 100vh; /* 让内容始终垂直居中 */
+            margin: 10px; /* 页边距 */
+            background-color: #f0f0f0; /* 设置页面背景颜色 */
+            flex-direction: column; /* 纵向排列内容 */
         }
 
-        /* 设置轮播容器的样式 */
+        /* 轮播容器样式 */
         .carousel {
-            width: 100%; /* 使轮播容器宽度占满父元素 */
-            max-width: 800px; /* 设置最大宽度，防止在大屏幕上过宽 */
-            background-color: transparent; /* 设置背景为透明 */
-            margin: 0 auto; /* 水平居中轮播容器 */
+            width: 100%; /* 宽度占满父元素 */
+            max-width: 800px; /* 限制最大宽度，避免在大屏幕上过宽 */
+            background-color: transparent; /* 背景透明 */
+            margin: 0 auto; /* 水平居中 */
+            padding-top: 5px; /* 较小的顶部内边距 */
+            padding-bottom: 5px; /* 较小的底部内边距 */
         }
 
-        /* 设置轮播单元格的样式 */
+        /* 轮播单元格样式 */
         .carousel-cell {
-            width: 100%; /* 使每个单元格宽度占满轮播容器 */
-            height: 0; /* 初始高度设为0 */
-            padding-bottom: 56.25%; /* 创建16:9的宽高比（可根据需要调整） */
-            position: relative; /* 为绝对定位的子元素创建参考 */
-            margin-right: 10px; /* 每个图片间增加10px的间距 */
+            width: 100%; /* 单元格宽度 */
+            height: auto; /* 高度自适应 */
+            padding-bottom: 50%; /* 在PC上使用2:1的宽高比 */
+            background-color: transparent; /* 背景透明 */
+            position: relative; /* 为图片的绝对定位提供参考 */
+            margin-right: 10px; /* 各图片间增加间距 */
         }
 
-        /* 设置图片样式 */
+        /* 图片样式 */
         .carousel-cell img {
-            position: absolute; /* 绝对定位，相对于.carousel-cell */
+            position: absolute; /* 绝对定位以便居中 */
             top: 50%; /* 垂直居中 */
             left: 50%; /* 水平居中 */
-            transform: translate(-50%, -50%); /* 确保图片精确居中 */
-            max-width: 100%; /* 限制图片最大宽度 */
-            max-height: 100%; /* 限制图片最大高度 */
-            width: auto; /* 保持图片原始宽高比 */
-            height: auto; /* 保持图片原始宽高比 */
-            object-fit: contain; /* 确保图片完整显示，不裁剪 */
+            transform: translate(-50%, -50%); /* 使用50%的偏移量精确居中 */
+            max-width: 100%; /* 限制最大宽度，避免图片溢出 */
+            max-height: 100%; /* 限制最大高度 */
+            object-fit: contain; /* 保持图片完整显示 */
         }
 
-        /* 响应式设计：在小屏幕上调整高度和边距 */
+        /* 响应式设计：在小屏幕上调整轮播高度 */
         @media (max-width: 600px) {
             .carousel-cell {
-                padding-bottom: 100%; /* 在小屏幕上使用4:3的宽高比 */
-            }
-            /* 调整上下边距 */
-            .carousel {
-                padding-top: 10px; /* 在小屏幕上减少上下内边距 */
-                padding-bottom: 10px;
+                padding-bottom: 40%; /* 小屏幕上使用更小的宽高比 */
             }
         }
 
         /* 自定义左右箭头的样式 */
         .flickity-button {
-            background: none; /* 去除默认背景 */
-            border: none; /* 去除边框 */
+            background: none; /* 去除按钮背景 */
+            border: none; /* 去除按钮边框 */
             color: #333; /* 设置箭头颜色 */
             font-size: 24px; /* 调整箭头大小 */
             width: 40px;
             height: 40px;
-            opacity: 0; /* 初始时隐藏 */
-            transition: opacity 0.3s; /* 添加过渡效果 */
+            opacity: 0; /* 初始隐藏箭头 */
+            transition: opacity 0.3s; /* 添加淡入淡出效果 */
         }
 
-        /* 自定义定位条的样式 */
+        /* 进度条容器样式 */
         .progress-bar {
-            width: 40%; /* 进度条宽度设为轮播容器宽度的40% */
+            width: 40%; /* 进度条宽度为轮播容器的40% */
             height: 2px; /* 进度条高度 */
-            background-color: #ccc; /* 默认背景色 */
-            overflow: hidden; /* 防止溢出 */
-            margin-top: 20px; /* 距离轮播容器底部10px */
-            opacity: 0; /* 初始时隐藏 */
-            transition: opacity 0.3s; /* 添加过渡效果 */
+            background-color: #ccc; /* 进度条背景色 */
+            overflow: hidden; /* 防止内容溢出 */
+            margin-top: 30px; /* 进度条与轮播容器的间距 */
+            opacity: 0; /* 初始隐藏 */
+            transition: opacity 0.3s; /* 添加淡入淡出效果 */
         }
 
         /* 进度条前景，用于显示当前进度 */
         .progress-bar .progress {
             width: 0%; /* 初始宽度 */
             height: 100%;
-            background-color: #333; /* 进度条颜色 */
-            transition: width 0.3s;
+            background-color: #333; /* 前景颜色 */
+            transition: width 0.1s;
         }
 
-        /* 鼠标悬停时箭头和定位栏显示 */
+        /* 鼠标悬停时显示箭头和进度条 */
         .carousel:hover + .progress-bar,
         .carousel:hover .flickity-button {
-            opacity: 0.7; /* 显示箭头和定位栏 */
-        }
-
-        /* 夜间模式适配 */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212; /* 夜间模式下背景颜色 */
-            }
-            .flickity-button {
-                color: #ccc; /* 夜间模式下箭头颜色 */
-            }
-            .progress-bar {
-                background-color: #444; /* 夜间模式下定位条颜色 */
-            }
-            .progress-bar .progress {
-                background-color: #ccc; /* 夜间模式下进度条颜色 */
-            }
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
     <!-- 轮播容器 -->
     <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "pauseAutoPlayOnHover": true, "pageDots": false, "prevNextButtons": true }'>
-        <!-- 第一张图片 -->
         <div class="carousel-cell">
             <img src="https://i.imgur.com/IXf2WmH.jpg" alt="Image 1">
         </div>
-        <!-- 第二张图片 -->
         <div class="carousel-cell">
             <img src="https://i.imgur.com/ofqYSsO.jpg" alt="Image 2">
         </div>
-        <!-- 第三张图片 -->
         <div class="carousel-cell">
             <img src="https://i.imgur.com/PZGJ2la.jpg" alt="Image 3">
         </div>
-        <!-- 第四张图片 -->
         <div class="carousel-cell">
             <img src="https://i.imgur.com/yZOPzHV.jpg" alt="Image 4">
         </div>
-        <!-- 第五张图片 -->
         <div class="carousel-cell">
             <img src="https://i.imgur.com/tgYbcCe.jpg" alt="Image 5">
         </div>
@@ -149,7 +124,7 @@
     <!-- 引入Flickity JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
-        // 初始化 Flickity
+        // 初始化 Flickity 轮播组件
         const flkty = new Flickity('.carousel', {
             wrapAround: true,
             autoPlay: 3000,
@@ -158,16 +133,14 @@
             prevNextButtons: true
         });
 
-        // 选择进度条元素
+        // 进度条动态更新
         const progressBar = document.querySelector('.progress-bar .progress');
-
-        // 更新进度条的宽度
         flkty.on('scroll', function(progress) {
             progress = Math.max(0, Math.min(1, progress));
-            progressBar.style.width = `${progress * 100}%`;
+            progressBar.style.width = `${progress * 100}%`; /* 更新进度条宽度 */
         });
 
-        // 设置触摸事件来控制箭头和定位栏的显示与隐藏
+        // 控制箭头和进度条的显示和隐藏
         const carousel = document.querySelector('.carousel');
         let hideTimeout;
 
@@ -181,7 +154,7 @@
             hideTimeout = setTimeout(() => {
                 carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0');
                 document.querySelector('.progress-bar').style.opacity = '0';
-            }, 2000);
+            }, 2000); /* 2秒后隐藏 */
         }
 
         carousel.addEventListener('mouseenter', showControls);
