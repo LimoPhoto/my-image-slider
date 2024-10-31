@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮播展示</title>
+    
+    <!-- 引入Flickity CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    
+    <style>
+        /* 设置轮播容器的样式 */
+        .carousel {
+            width: 100%; /* 使轮播容器宽度占满父元素 */
+            max-width: 800px; /* 设置最大宽度，防止在大屏幕上过宽 */
+            margin: 0 auto; /* 水平居中轮播容器 */
+        }
+
+        /* 设置轮播单元格的样式 */
+        .carousel-cell {
+            width: 100%; /* 使每个单元格宽度占满轮播容器 */
+            height: 0; /* 初始高度设为0 */
+            padding-bottom: 56.25%; /* 创建16:9的宽高比（可根据需要调整） */
+            position: relative; /* 为绝对定位的子元素创建参考 */
+        }
+
+        /* 设置图片样式 */
+        .carousel-cell img {
+            position: absolute; /* 绝对定位，相对于.carousel-cell */
+            top: 50%; /* 垂直居中 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%); /* 确保图片精确居中 */
+            max-width: 100%; /* 限制图片最大宽度 */
+            max-height: 100%; /* 限制图片最大高度 */
+            width: auto; /* 保持图片原始宽高比 */
+            height: auto; /* 保持图片原始宽高比 */
+            object-fit: contain; /* 确保图片完整显示，不裁剪 */
+        }
+
+        /* 响应式设计：在小屏幕上调整高度 */
+        @media (max-width: 600px) {
+            .carousel-cell {
+                padding-bottom: 75%; /* 在小屏幕上使用4:3的宽高比 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 轮播容器 -->
+    <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": true }'>
+        <!-- 第一张图片 -->
+        <div class="carousel-cell">
+            <img src="https://i.imgur.com/IXf2WmH.jpg" alt="Image 1">
+        </div>
+        <!-- 第二张图片 -->
+        <div class="carousel-cell">
+            <img src="https://i.imgur.com/ofqYSsO.jpg" alt="Image 2">
+        </div>
+        <!-- 第三张图片 -->
+        <div class="carousel-cell">
+            <img src="https://i.imgur.com/PZGJ2la.jpg" alt="Image 3">
+        </div>
+        <!-- 可以继续添加更多图片 -->
+        <div class="carousel-cell">
+		<img src="https://i.imgur.com/yZOPzHV.jpg" alt="Image 4">
+        </div>
+        <div class="carousel-cell">
+		<img src="https://i.imgur.com/tgYbcCe.jpg" alt="Image 5">
+    </div>
+
+    <!-- 引入Flickity JavaScript -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</body>
+</html>
