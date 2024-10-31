@@ -19,7 +19,7 @@
         /* 设置轮播单元格的样式 */
         .carousel-cell {
             width: 100%; /* 使每个单元格宽度占满轮播容器 */
-            height: 50%; /* 初始高度设为0 */
+            height: 0; /* 初始高度设为0 */
             padding-bottom: 56.25%; /* 创建16:9的宽高比（可根据需要调整） */
             position: relative; /* 为绝对定位的子元素创建参考 */
         }
@@ -40,7 +40,7 @@
         /* 响应式设计：在小屏幕上调整高度 */
         @media (max-width: 600px) {
             .carousel-cell {
-                padding-bottom: 75%; /* 在小屏幕上使用4:3的宽高比 */
+                padding-bottom: 100%; /* 在小屏幕上使用4:3的宽高比 */
             }
         }
     </style>
