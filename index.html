@@ -50,10 +50,15 @@
             object-fit: contain; /* 确保图片完整显示，不裁剪 */
         }
 
-        /* 响应式设计：在小屏幕上调整高度 */
+        /* 响应式设计：在小屏幕上调整高度和边距 */
         @media (max-width: 600px) {
             .carousel-cell {
-                padding-bottom: 75%; /* 在小屏幕上使用4:3的宽高比 */
+                padding-bottom: 100%; /* 在小屏幕上使用4:3的宽高比 */
+            }
+            /* 调整上下边距 */
+            .carousel {
+                padding-top: 10px; /* 在小屏幕上减少上下内边距 */
+                padding-bottom: 10px;
             }
         }
 
@@ -71,7 +76,7 @@
 
         /* 自定义定位条的样式 */
         .progress-bar {
-            width: 40%; /* 进度条宽度设为轮播容器宽度的60% */
+            width: 40%; /* 进度条宽度设为轮播容器宽度的40% */
             height: 2px; /* 进度条高度 */
             background-color: #ccc; /* 默认背景色 */
             overflow: hidden; /* 防止溢出 */
@@ -92,6 +97,22 @@
         .carousel:hover + .progress-bar,
         .carousel:hover .flickity-button {
             opacity: 0.7; /* 显示箭头和定位栏 */
+        }
+
+        /* 夜间模式适配 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212; /* 夜间模式下背景颜色 */
+            }
+            .flickity-button {
+                color: #ccc; /* 夜间模式下箭头颜色 */
+            }
+            .progress-bar {
+                background-color: #444; /* 夜间模式下定位条颜色 */
+            }
+            .progress-bar .progress {
+                background-color: #ccc; /* 夜间模式下进度条颜色 */
+            }
         }
     </style>
 </head>
@@ -142,7 +163,6 @@
 
         // 更新进度条的宽度
         flkty.on('scroll', function(progress) {
-            // 将进度值转换为百分比并设置为宽度
             progress = Math.max(0, Math.min(1, progress));
             progressBar.style.width = `${progress * 100}%`;
         });
@@ -152,25 +172,20 @@
         let hideTimeout;
 
         function showControls() {
-            // 清除隐藏定时器并显示控件
             clearTimeout(hideTimeout);
             carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0.7');
             document.querySelector('.progress-bar').style.opacity = '0.7';
         }
 
         function hideControls() {
-            // 在一段时间后隐藏控件
             hideTimeout = setTimeout(() => {
                 carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0');
                 document.querySelector('.progress-bar').style.opacity = '0';
-            }, 2000); // 两秒后隐藏
+            }, 2000);
         }
 
-        // 绑定鼠标进入和离开事件
         carousel.addEventListener('mouseenter', showControls);
         carousel.addEventListener('mouseleave', hideControls);
-
-        // 绑定触摸事件
         carousel.addEventListener('touchstart', showControls);
         carousel.addEventListener('touchend', hideControls);
     </script>
