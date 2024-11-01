@@ -60,7 +60,7 @@
 
         /* 自定义简洁箭头样式 */
         .flickity-button {
-            background: none !important; /* 强制移除背景颜色 */
+            background: none !important; /* 移除背景颜色 */
             border: none !important;
             color: #333 !important;
             font-size: 20px !important; /* 调整箭头大小 */
@@ -100,6 +100,13 @@
             height: 100%;
             background-color: #333;
             transition: width 0.1s;
+        }
+
+        /* 隐藏箭头在手机端显示 */
+        @media (max-width: 768px) {
+            .flickity-button {
+                display: none !important;
+            }
         }
     </style>
 </head>
