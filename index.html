@@ -60,7 +60,7 @@
 
         /* 自定义简洁箭头样式 */
         .flickity-button {
-            background: none;
+            background: none; /* 移除背景颜色 */
             border: none;
             color: #333;
             font-size: 20px; /* 调整箭头大小 */
@@ -68,13 +68,15 @@
             height: 30px;
             opacity: 0;
             transition: opacity 0.3s;
+            outline: none; /* 禁用按钮点击后的边框 */
+            box-shadow: none; /* 去掉按钮的阴影 */
         }
 
-        /* 使用自定义 SVG 箭头，使线条更细 */
-        .flickity-button-icon {
-            fill: none;
-            stroke: #333;
-            stroke-width: 1.5; /* 细线效果 */
+        /* 去掉点击和聚焦状态下的背景效果 */
+        .flickity-button:focus,
+        .flickity-button:active {
+            background: none; /* 禁用点击时的背景色 */
+            box-shadow: none; /* 去掉点击时的阴影 */
         }
 
         /* 控制箭头和进度条的显示与隐藏 */
