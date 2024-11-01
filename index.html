@@ -15,17 +15,17 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 10px; /* 移除页边距 */
+            margin: 10px;
             background-color: transparent;
             flex-direction: column;
-            overflow: hidden; /* 禁止页面垂直滚动 */
+            overflow: hidden;
         }
 
         /* 轮播容器样式 */
         .carousel {
             width: 100%;
             max-width: 1000px;
-            max-height: 100vh; /* 限制轮播容器的最大高度 */
+            max-height: 100vh;
             background-color: transparent;
             margin: 0 auto;
         }
@@ -48,9 +48,7 @@
             transform: translate(-50%, -50%);
             max-width: 100%;
             max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover; /* 确保图片填满单元格 */
+            object-fit: cover;
         }
 
         /* 响应式设计：在小屏幕上调整轮播高度 */
@@ -60,16 +58,28 @@
             }
         }
 
-        /* 自定义左右箭头的样式 */
+        /* 自定义简洁箭头样式 */
         .flickity-button {
             background: none;
             border: none;
             color: #333;
-            font-size: 24px;
-            width: 40px;
-            height: 40px;
+            font-size: 20px; /* 调整箭头大小 */
+            width: 30px;
+            height: 30px;
             opacity: 0;
             transition: opacity 0.3s;
+        }
+
+        /* 使用自定义 SVG 箭头，使线条更细 */
+        .flickity-button-icon {
+            fill: none;
+            stroke: #333;
+            stroke-width: 1.5; /* 细线效果 */
+        }
+
+        /* 控制箭头和进度条的显示与隐藏 */
+        .carousel:hover .flickity-button {
+            opacity: 0.5;
         }
 
         /* 进度条容器样式 */
@@ -83,18 +93,11 @@
             transition: opacity 0.3s;
         }
 
-        /* 进度条前景，用于显示当前进度 */
         .progress-bar .progress {
             width: 0%;
             height: 100%;
             background-color: #333;
             transition: width 0.1s;
-        }
-
-        /* 鼠标悬停时显示箭头和进度条 */
-        .carousel:hover + .progress-bar,
-        .carousel:hover .flickity-button {
-            opacity: 0.7;
         }
     </style>
 </head>
@@ -126,7 +129,6 @@
     <!-- 引入Flickity JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
-        // 初始化 Flickity 轮播组件
         const flkty = new Flickity('.carousel', {
             wrapAround: true,
             autoPlay: 3000,
@@ -148,7 +150,7 @@
 
         function showControls() {
             clearTimeout(hideTimeout);
-            carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0.7');
+            carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0.5');
             document.querySelector('.progress-bar').style.opacity = '0.7';
         }
 
@@ -156,7 +158,7 @@
             hideTimeout = setTimeout(() => {
                 carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0');
                 document.querySelector('.progress-bar').style.opacity = '0';
-            }, 2000); /* 2秒后隐藏 */
+            }, 2000);
         }
 
         carousel.addEventListener('mouseenter', showControls);
