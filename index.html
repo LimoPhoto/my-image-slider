@@ -60,28 +60,28 @@
 
         /* 自定义简洁箭头样式 */
         .flickity-button {
-            background: none; /* 移除背景颜色 */
-            border: none;
-            color: #333;
-            font-size: 20px; /* 调整箭头大小 */
-            width: 30px;
-            height: 30px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            outline: none; /* 禁用按钮点击后的边框 */
-            box-shadow: none; /* 去掉按钮的阴影 */
+            background: none !important; /* 强制移除背景颜色 */
+            border: none !important;
+            color: #333 !important;
+            font-size: 20px !important; /* 调整箭头大小 */
+            width: 30px !important;
+            height: 30px !important;
+            opacity: 0 !important;
+            transition: opacity 0.3s !important;
+            outline: none !important; /* 禁用按钮点击后的边框 */
+            box-shadow: none !important; /* 去掉按钮的阴影 */
         }
 
         /* 去掉点击和聚焦状态下的背景效果 */
         .flickity-button:focus,
         .flickity-button:active {
-            background: none; /* 禁用点击时的背景色 */
-            box-shadow: none; /* 去掉点击时的阴影 */
+            background: none !important; /* 禁用点击时的背景色 */
+            box-shadow: none !important; /* 去掉点击时的阴影 */
         }
 
         /* 控制箭头和进度条的显示与隐藏 */
         .carousel:hover .flickity-button {
-            opacity: 0.5;
+            opacity: 0.5 !important;
         }
 
         /* 进度条容器样式 */
