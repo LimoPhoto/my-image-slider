@@ -103,25 +103,58 @@
             }
         }
 
-        /* 全屏按钮样式 */
-        .fullscreen-btn {
+        /* 全屏图标样式 */
+        .fullscreen-icon {
             position: absolute;
-            top: 10px;
+            bottom: 10px;
             right: 10px;
             z-index: 1000;
-            padding: 10px 15px;
-            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+            opacity: 0.7;
+        }
+
+        .fullscreen-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .fullscreen-icon:hover {
+            opacity: 1;
+        }
+
+        /* 鼠标不活动时隐藏图标 */
+        .hide-icon {
+            opacity: 0 !important;
+        }
+
+        /* 全屏模式下的样式 */
+        .fullscreen .carousel {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .fullscreen .carousel-cell {
+            padding-bottom: 0;
         }
     </style>
 </head>
 <body>
     <!-- 轮播容器 -->
-    <div class="carousel-container">
-        <button class="fullscreen-btn" onclick="toggleFullScreen()">全屏显示</button>
+    <div class="carousel-container" id="carouselContainer">
+        <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
+            <img src="https://img.icons8.com/material-rounded/24/ffffff/full-screen.png" alt="Fullscreen Icon">
+        </button>
         <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "pauseAutoPlayOnHover": true, "pageDots": false, "prevNextButtons": true }'>
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
@@ -182,16 +215,28 @@
         carousel.addEventListener('touchend', hideControls);
 
         // 全屏功能
+        const fullscreenButton = document.getElementById("fullscreenButton");
+        const carouselContainer = document.getElementById("carouselContainer");
+
         function toggleFullScreen() {
-            const elem = document.querySelector('.carousel-container');
             if (!document.fullscreenElement) {
-                elem.requestFullscreen().catch(err => {
-                    alert(`全屏失败: ${err.message}`);
-                });
+                carouselContainer.requestFullscreen();
+                carouselContainer.classList.add("fullscreen");
             } else {
                 document.exitFullscreen();
+                carouselContainer.classList.remove("fullscreen");
             }
         }
+
+        // 隐藏全屏图标功能
+        let iconTimeout;
+        document.addEventListener("mousemove", () => {
+            fullscreenButton.classList.remove("hide-icon");
+            clearTimeout(iconTimeout);
+            iconTimeout = setTimeout(() => {
+                fullscreenButton.classList.add("hide-icon");
+            }, 2000);
+        });
     </script>
 </body>
 </html>
