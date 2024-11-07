@@ -93,6 +93,7 @@
             margin-top: 30px;
             opacity: 0;
             transition: opacity 0.3s;
+            position: relative;
         }
 
         .progress-bar .progress {
@@ -111,10 +112,9 @@
         /* 全屏图标样式 */
         .fullscreen-icon {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            top: -12px; /* 将按钮垂直居中对齐进度条 */
+            right: -40px; /* 将按钮右对齐在进度条右侧 */
             z-index: 1000;
-            padding: 5px;
             color: #333;
             border: none;
             cursor: pointer;
@@ -150,9 +150,6 @@
 <body>
     <!-- 轮播容器 -->
     <div class="carousel-container" id="carouselContainer">
-        <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
-            <img src="https://img.icons8.com/material-rounded/24/333333/full-screen.png" alt="Fullscreen Icon">
-        </button>
         <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "pauseAutoPlayOnHover": true, "pageDots": false, "prevNextButtons": true }'>
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
@@ -167,9 +164,12 @@
         </div>
     </div>
 
-    <!-- 定位栏 -->
+    <!-- 进度栏和全屏按钮容器 -->
     <div class="progress-bar">
         <div class="progress"></div>
+        <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
+            <img src="https://img.icons8.com/material-rounded/24/333333/full-screen.png" alt="Fullscreen Icon">
+        </button>
     </div>
 
     <!-- 引入Flickity JavaScript -->
