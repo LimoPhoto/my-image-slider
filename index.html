@@ -26,8 +26,6 @@
             max-width: 1000px;
             max-height: 100vh;
             margin: 0 auto;
-            display: flex;
-            align-items: center; /* 垂直居中图片 */
         }
 
         .carousel {
@@ -43,14 +41,14 @@
             margin-right: 10px;
             background-color: transparent;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center;  /* 让图片在小于容器时垂直居中 */
+            justify-content: center; /* 让图片在小于容器时水平居中 */
         }
 
         .carousel-cell img {
             max-width: 100%;
-            max-height: 100vh; /* 确保全屏模式时图片不会超出视口 */
-            object-fit: contain;
+            max-height: 100vh; /* 确保图片在全屏模式下不会超出容器 */
+            object-fit: contain; /* 使图片适应容器的宽高 */
         }
 
         @media (max-width: 600px) {
@@ -142,8 +140,6 @@
         .fullscreen .carousel-container {
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center; /* 垂直居中图片 */
         }
 
         /* 隐藏移动端的全屏图标 */
@@ -164,10 +160,13 @@
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
             </div>
-            <!-- 其他图片 -->
             <div class="carousel-cell">
-                <img src="https://i.imgur.com/ZbFCj5G.jpg" alt="Image 35">
+                <img src="https://i.imgur.com/hCzDHFS.jpg" alt="Image 2">
             </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/0j8jSQT.jpg" alt="Image 3">
+            </div>
+            <!-- 添加其他图片 -->
         </div>
     </div>
 
