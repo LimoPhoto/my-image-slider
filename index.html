@@ -214,11 +214,19 @@
         const carouselContainer = document.getElementById("carouselContainer");
 
         function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                carouselContainer.requestFullscreen();
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (carouselContainer.requestFullscreen) {
+                    carouselContainer.requestFullscreen();
+                } else if (carouselContainer.webkitRequestFullscreen) { // Safari 支持
+                    carouselContainer.webkitRequestFullscreen();
+                }
                 carouselContainer.classList.add("fullscreen");
             } else {
-                document.exitFullscreen();
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { // Safari 支持
+                    document.webkitExitFullscreen();
+                }
                 carouselContainer.classList.remove("fullscreen");
             }
         }
