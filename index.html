@@ -40,15 +40,16 @@
             position: relative;
             margin-right: 10px;
             background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .carousel-cell img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             max-width: 100%;
-            max-height: 100%; /* 确保图片在全屏模式下不会超出容器 */
-            object-fit: contain; /* 使图片适应容器的宽高 */
+            max-height: 100%;
+            object-fit: cover;
         }
 
         @media (max-width: 600px) {
@@ -140,9 +141,6 @@
         .fullscreen .carousel-container {
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center; /* 垂直居中 */
-            justify-content: center; /* 水平居中 */
         }
 
         /* 隐藏移动端的全屏图标 */
