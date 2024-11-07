@@ -142,6 +142,13 @@
             width: 100vw;
             height: 100vh;
         }
+
+        /* 隐藏移动端的全屏图标 */
+        @media (max-width: 768px) {
+            .fullscreen-icon {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -214,19 +221,13 @@
         const carouselContainer = document.getElementById("carouselContainer");
 
         function toggleFullScreen() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (carouselContainer.requestFullscreen) {
-                    carouselContainer.requestFullscreen();
-                } else if (carouselContainer.webkitRequestFullscreen) { // Safari 支持
-                    carouselContainer.webkitRequestFullscreen();
-                }
+            if (!document.fullscreenElement) {
+                carouselContainer.requestFullscreen().catch(err => {
+                    alert(`全屏失败: ${err.message}`);
+                });
                 carouselContainer.classList.add("fullscreen");
             } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) { // Safari 支持
-                    document.webkitExitFullscreen();
-                }
+                document.exitFullscreen();
                 carouselContainer.classList.remove("fullscreen");
             }
         }
