@@ -26,9 +26,9 @@
             max-width: 1000px;
             max-height: 100vh;
             margin: 0 auto;
-            display: flex;           /* 使用 flex 布局 */
-            align-items: center;      /* 垂直居中 */
-            justify-content: center;  /* 水平居中 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel {
@@ -109,8 +109,8 @@
 
         /* 全屏图标样式 */
         .fullscreen-icon {
-            position: absolute;
-            bottom: 0px;
+            position: fixed;
+            bottom: 10px;
             right: 10px;
             z-index: 1000;
             padding: 5px;
@@ -123,16 +123,12 @@
             align-items: center;
             justify-content: center;
             transition: opacity 0.3s;
-            opacity: 0.7 ;
+            opacity: 0;
         }
 
         .fullscreen-icon img {
             width: 20px;
             height: 20px;
-        }
-
-        .fullscreen-icon:hover {
-            opacity: 1;
         }
 
         /* 鼠标不活动时隐藏图标 */
@@ -145,8 +141,8 @@
             width: 100vw;
             height: 100vh;
             display: flex;
-            align-items: center; /* 全屏时垂直居中 */
-            justify-content: center; /* 水平居中 */
+            align-items: center;
+            justify-content: center;
         }
 
         /* 隐藏移动端的全屏图标 */
@@ -161,14 +157,14 @@
     <!-- 轮播容器 -->
     <div class="carousel-container" id="carouselContainer">
         <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 6h5V4H4v7h2V6zm12 0v5h2V4h-7v2h5zM6 13H4v7h7v-2H6v-5zm12 5h-5v2h7v-7h-2v5z"/>
-    </svg>
-</button>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6h5V4H4v7h2V6zm12 0v5h2V4h-7v2h5zM6 13H4v7h7v-2H6v-5zm12 5h-5v2h7v-7h-2v5z"/>
+            </svg>
+        </button>
 
         <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "pauseAutoPlayOnHover": true, "pageDots": false, "prevNextButtons": true }'>
             <div class="carousel-cell">
-              <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
+                <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
             </div>
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/hCzDHFS.jpg" alt="Image 2">
@@ -272,7 +268,6 @@
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/ZbFCj5G.jpg" alt="Image 35">
             </div>
-    
         </div>
     </div>
 
