@@ -26,9 +26,9 @@
             max-width: 1000px;
             max-height: 100vh;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex;           /* 使用 flex 布局 */
+            align-items: center;      /* 垂直居中 */
+            justify-content: center;  /* 水平居中 */
         }
 
         .carousel {
@@ -80,8 +80,7 @@
             box-shadow: none !important;
         }
 
-        .carousel:hover .flickity-button,
-        .carousel:hover .fullscreen-icon {
+        .carousel:hover .flickity-button {
             opacity: 0.5 !important;
         }
 
@@ -93,7 +92,6 @@
             margin-top: 30px;
             opacity: 0;
             transition: opacity 0.3s;
-            position: relative;
         }
 
         .progress-bar .progress {
@@ -112,17 +110,20 @@
         /* 全屏图标样式 */
         .fullscreen-icon {
             position: absolute;
-            top: -12px; /* 将按钮垂直居中对齐进度条 */
-            right: -40px; /* 将按钮右对齐在进度条右侧 */
+            bottom: 10px;
+            right: 10px;
             z-index: 1000;
+            padding: 5px;
+            background-color: transparent;
             color: #333;
             border: none;
             cursor: pointer;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.3s;
-            opacity: 0;
+            opacity: 0.7;
         }
 
         .fullscreen-icon img {
@@ -130,13 +131,22 @@
             height: 20px;
         }
 
+        .fullscreen-icon:hover {
+            opacity: 1;
+        }
+
+        /* 鼠标不活动时隐藏图标 */
+        .hide-icon {
+            opacity: 0 !important;
+        }
+
         /* 全屏模式下的样式 */
         .fullscreen .carousel-container {
             width: 100vw;
             height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; /* 全屏时垂直居中 */
+            justify-content: center; /* 水平居中 */
         }
 
         /* 隐藏移动端的全屏图标 */
@@ -150,9 +160,12 @@
 <body>
     <!-- 轮播容器 -->
     <div class="carousel-container" id="carouselContainer">
+        <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
+            <img src="https://img.icons8.com/material-rounded/24/ffffff/full-screen.png" alt="Fullscreen Icon">
+        </button>
         <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "pauseAutoPlayOnHover": true, "pageDots": false, "prevNextButtons": true }'>
             <div class="carousel-cell">
-                <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
+              <img src="https://i.imgur.com/fxn1bak.jpg" alt="Image 1">
             </div>
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/hCzDHFS.jpg" alt="Image 2">
@@ -160,16 +173,109 @@
             <div class="carousel-cell">
                 <img src="https://i.imgur.com/0j8jSQT.jpg" alt="Image 3">
             </div>
-            <!-- 添加其他图片 -->
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/gpE8Wfx.jpg" alt="Image 4">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/ZIpO68T.jpg" alt="Image 5">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/OZXBiyc.jpg" alt="Image 6">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/ko1stfg.jpg" alt="Image 7">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/EQ0LvO5.jpg" alt="Image 8">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/3K7Os6A.jpg" alt="Image 9">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/XxGUDsP.jpg" alt="Image 10">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/GiNmYYx.jpg" alt="Image 11">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/NaamCU5.jpg" alt="Image 12">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/HriuPal.jpg" alt="Image 13">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/021dk3A.jpg" alt="Image 14">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/PF0ItGX.jpg" alt="Image 15">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/7FvfqNP.jpg" alt="Image 16">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/mGmvgpc.jpg" alt="Image 17">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/o55mG9K.jpg" alt="Image 18">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/wTBN8Q7.jpg" alt="Image 19">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/TnJdPtZ.jpg" alt="Image 20">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/XeIMywI.jpg" alt="Image 21">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/wdxM90t.jpg" alt="Image 22">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/cVaexRd.jpg" alt="Image 23">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/HMBEBs9.jpg" alt="Image 24">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/ncEoXB7.jpg" alt="Image 25">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/FFp3ur1.jpg" alt="Image 26">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/AT2E81P.jpg" alt="Image 27">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/n6CqVmz.jpg" alt="Image 28">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/7dLOpVU.jpg" alt="Image 29">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/By0Rtd5.jpg" alt="Image 30">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/CgrrSGK.jpg" alt="Image 31">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/cGzhBKd.jpg" alt="Image 32">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/IHiKuHB.jpg" alt="Image 33">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/vqXQYHR.jpg" alt="Image 34">
+            </div>
+            <div class="carousel-cell">
+                <img src="https://i.imgur.com/ZbFCj5G.jpg" alt="Image 35">
+            </div>
+    
         </div>
     </div>
 
-    <!-- 进度栏和全屏按钮容器 -->
+    <!-- 定位栏 -->
     <div class="progress-bar">
         <div class="progress"></div>
-        <button class="fullscreen-icon" id="fullscreenButton" onclick="toggleFullScreen()">
-            <img src="https://img.icons8.com/material-rounded/24/333333/full-screen.png" alt="Fullscreen Icon">
-        </button>
     </div>
 
     <!-- 引入Flickity JavaScript -->
@@ -197,14 +303,12 @@
         function showControls() {
             clearTimeout(hideTimeout);
             carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0.5');
-            document.querySelector('.fullscreen-icon').style.opacity = '0.5';
             document.querySelector('.progress-bar').style.opacity = '0.7';
         }
 
         function hideControls() {
             hideTimeout = setTimeout(() => {
                 carousel.querySelectorAll('.flickity-button').forEach(button => button.style.opacity = '0');
-                document.querySelector('.fullscreen-icon').style.opacity = '0';
                 document.querySelector('.progress-bar').style.opacity = '0';
             }, 2000);
         }
@@ -229,6 +333,16 @@
                 carouselContainer.classList.remove("fullscreen");
             }
         }
+
+        // 隐藏全屏图标功能
+        let iconTimeout;
+        document.addEventListener("mousemove", () => {
+            fullscreenButton.classList.remove("hide-icon");
+            clearTimeout(iconTimeout);
+            iconTimeout = setTimeout(() => {
+                fullscreenButton.classList.add("hide-icon");
+            }, 2000);
+        });
     </script>
 </body>
 </html>
